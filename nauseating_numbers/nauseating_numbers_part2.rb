@@ -5,9 +5,7 @@ def anti_prime?(num)
 end
 
 def find_factors(num)
-    factors_array = []
-    (1..num).each { |divisor| factors_array << divisor if num % divisor == 0 }
-    factors_array
+    (1..num).select { |divisor| num % divisor == 0 }
 end
 
 # p anti_prime?(24)   == true
@@ -42,24 +40,26 @@ end
 # p matrix_addition(matrix_d, matrix_e) == [[2, -5], [19, 14], [6, 4]]
 
 
-def mutual_factors(*num)
-
+def mutual_factors(*nums)
+    (1..nums.max).select do |divisor|
+        nums.all? { |num| num % divisor == 0 }
+    end
 end
 
-# p mutual_factors(50, 30)            # [1, 2, 5, 10]
-# p mutual_factors(50, 30, 45, 105)   # [1, 5]
-# p mutual_factors(8, 4)              # [1, 2, 4]
-# p mutual_factors(8, 4, 10)          # [1, 2]
-# p mutual_factors(12, 24)            # [1, 2, 3, 4, 6, 12]
-# p mutual_factors(12, 24, 64)        # [1, 2, 4]
-# p mutual_factors(22, 44)            # [1, 2, 11, 22]
-# p mutual_factors(22, 44, 11)        # [1, 11]
-# p mutual_factors(7)                 # [1, 7]
-# p mutual_factors(7, 9)              # [1]
+# p mutual_factors(50, 30)            == [1, 2, 5, 10]
+# p mutual_factors(50, 30, 45, 105)   == [1, 5]
+# p mutual_factors(8, 4)              == [1, 2, 4]
+# p mutual_factors(8, 4, 10)          == [1, 2]
+# p mutual_factors(12, 24)            == [1, 2, 3, 4, 6, 12]
+# p mutual_factors(12, 24, 64)        == [1, 2, 4]
+# p mutual_factors(22, 44)            == [1, 2, 11, 22]
+# p mutual_factors(22, 44, 11)        == [1, 11]
+# p mutual_factors(7)                 == [1, 7]
+# p mutual_factors(7, 9)              == [1]
 
 
 def tribonacci_number(num)
-
+    
 end
 
 # p tribonacci_number(1)  # 1
