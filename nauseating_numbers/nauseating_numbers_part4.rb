@@ -1,3 +1,5 @@
+require 'byebug'
+
 def mersenne_prime(num)
     mersenne_primes = [3]
     until mersenne_primes.length == num
@@ -43,28 +45,39 @@ def triangular_word?(str)
     end
 end
 
-p triangular_word?('abc')       == true
-p triangular_word?('ba')        == true
-p triangular_word?('lovely')    == true
-p triangular_word?('question')  == true
-p triangular_word?('aa')        == false
-p triangular_word?('cd')        == false
-p triangular_word?('cat')       == false
-p triangular_word?('sink')      == false
+# p triangular_word?('abc')       == true
+# p triangular_word?('ba')        == true
+# p triangular_word?('lovely')    == true
+# p triangular_word?('question')  == true
+# p triangular_word?('aa')        == false
+# p triangular_word?('cd')        == false
+# p triangular_word?('cat')       == false
+# p triangular_word?('sink')      == false
 
 
 def consecutive_collapse(array)
+    return array if array.length < 2
     
+    # debugger
+    array.each_with_index do |num, idx|
+        # debugger
+        if (num + 1) == array[idx + 1] || (num - 1) == array[idx + 1]
+            # debugger
+            array.delete_at(idx + 1)
+            array.delete_at(idx)
+            consecutive_collapse(array)
+        end
+    end
 end
 
-# p consecutive_collapse([3, 4, 1])                     # [1]
-# p consecutive_collapse([1, 4, 3, 7])                  # [1, 7]
-# p consecutive_collapse([9, 8, 2])                     # [2]
-# p consecutive_collapse([9, 8, 4, 5, 6])               # [6]
-# p consecutive_collapse([1, 9, 8, 6, 4, 5, 7, 9, 2])   # [1, 9, 2]
-# p consecutive_collapse([3, 5, 6, 2, 1])               # [1]
-# p consecutive_collapse([5, 7, 9, 9])                  # [5, 7, 9, 9]
-# p consecutive_collapse([13, 11, 12, 12])              # []
+# p consecutive_collapse([3, 4, 1])                     == [1]
+# p consecutive_collapse([1, 4, 3, 7])                  == [1, 7]
+# p consecutive_collapse([9, 8, 2])                     == [2]
+# p consecutive_collapse([9, 8, 4, 5, 6])               == [6]
+# p consecutive_collapse([1, 9, 8, 6, 4, 5, 7, 9, 2])   == [1, 9, 2]
+# p consecutive_collapse([3, 5, 6, 2, 1])               == [1]
+# p consecutive_collapse([5, 7, 9, 9])                  == [5, 7, 9, 9]
+# p consecutive_collapse([13, 11, 12, 12])              == []
 
 
 def pretentious_primes(array, num)
