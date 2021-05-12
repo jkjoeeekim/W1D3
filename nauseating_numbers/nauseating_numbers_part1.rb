@@ -1,5 +1,5 @@
 def strange_sums(array)
-    array.combination(2).to_a.count { |combo| combo.sum == 0 }
+    array.combination(2).to_a.count { |pair| pair.sum == 0 }
 end
 
 # p strange_sums([2, -3, 3, 4, -2])     == 2
@@ -10,7 +10,7 @@ end
 
 
 def pair_product(array, product)
-    array.combination(2).to_a.any? { |combo| combo.inject(:*) == product }
+    array.combination(2).to_a.any? { |pair| pair.inject(:*) == product }
 end
 
 
