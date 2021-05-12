@@ -1,21 +1,33 @@
 def anti_prime?(num)
-
+    factors_array = Array.new
+    (1..num).each { |int| factors_array << find_factors(int) }
+    (0...(factors_array.length - 1)).all? { |idx| factors_array[-1].length > factors_array[idx].length }
 end
 
-# p anti_prime?(24)   # true
-# p anti_prime?(36)   # true
-# p anti_prime?(48)   # true
-# p anti_prime?(360)  # true
-# p anti_prime?(1260) # true
-# p anti_prime?(27)   # false
-# p anti_prime?(5)    # false
-# p anti_prime?(100)  # false
-# p anti_prime?(136)  # false
-# p anti_prime?(1024) # false
+def find_factors(num)
+    factors_array = []
+    (1..num).each { |divisor| factors_array << divisor if num % divisor == 0 }
+    factors_array
+end
+
+# p anti_prime?(24)   == true
+# p anti_prime?(36)   == true
+# p anti_prime?(48)   == true
+# p anti_prime?(360)  == true
+# p anti_prime?(1260) == true
+# p anti_prime?(27)   == false
+# p anti_prime?(5)    == false
+# p anti_prime?(100)  == false
+# p anti_prime?(136)  == false
+# p anti_prime?(1024) == false
 
 
 def matrix_addition(matrix1, matrix2)
-
+    new_matrix = Array.new
+    (0...matrix1.length).each do |idx|
+        new_matrix << [matrix1[idx][0] + matrix2[idx][0], matrix1[idx][1] + matrix2[idx][1]]
+    end
+    new_matrix
 end
 
 # matrix_a = [[2,5], [4,7]]
@@ -24,10 +36,10 @@ end
 # matrix_d = [[2, -5], [7, 10], [0, 1]]
 # matrix_e = [[0 , 0], [12, 4], [6,  3]]
 
-# p matrix_addition(matrix_a, matrix_b) # [[11, 6], [7, 7]]
-# p matrix_addition(matrix_a, matrix_c) # [[1, 5], [4, 6]]
-# p matrix_addition(matrix_b, matrix_c) # [[8, 1], [3, -1]]
-# p matrix_addition(matrix_d, matrix_e) # [[2, -5], [19, 14], [6, 4]]
+# p matrix_addition(matrix_a, matrix_b) == [[11, 6], [7, 7]]
+# p matrix_addition(matrix_a, matrix_c) == [[1, 5], [4, 6]]
+# p matrix_addition(matrix_b, matrix_c) == [[8, 1], [3, -1]]
+# p matrix_addition(matrix_d, matrix_e) == [[2, -5], [19, 14], [6, 4]]
 
 
 def mutual_factors(*num)
