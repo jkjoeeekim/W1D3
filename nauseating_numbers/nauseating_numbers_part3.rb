@@ -1,24 +1,9 @@
 def matrix_addition_reloaded(*matrices)
     return nil if matrices.any? { |matrix| matrices[0].length != matrix.length }
 
-    new_matrix = []
-    
-    matrices.transpose.each do |matrix|
-        pairs = []
-        sum_pairs = []
-
-        matrix.each do |pair|
-            pairs << pair
-        end
-
-        pairs.transpose.each do |pair|
-            sum_pairs << pair.sum
-        end
-
-        new_matrix << sum_pairs
+    matrices.transpose.map! do |matrix|
+        matrix.transpose.map! { |pair| pair.sum }
     end
-    
-    new_matrix
 end
 
 
@@ -44,7 +29,7 @@ p matrix_addition_reloaded(matrix_d, matrix_e, matrix_c)    ==  nil
 
 
 def squarocol?(array)
-
+    
 end
 
 # p squarocol?([
